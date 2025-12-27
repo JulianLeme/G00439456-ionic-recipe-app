@@ -1,0 +1,12 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Use Metric Units</ion-label>
+    <ion-toggle [checked]="metric" (ionChange)="onToggleChange($event)"></ion-toggle>
+  </ion-item>
+</ion-content>
