@@ -19,20 +19,13 @@
   <ion-list>
 
     <!-- First recipe item -->
-    <ion-item button>
-      <ion-label>
-        <h3>Sushi</h3>
-        <p>Classic Japanese</p>
-      </ion-label>
-    </ion-item>
-
-    <!-- Second recipe item -->
-    <ion-item button>
-      <ion-label>
-        <h3>Lasagna</h3>
-        <p>Classic Italian</p>
-      </ion-label>
-    </ion-item>
+   <ion-item button *ngFor="let recipe of recipes">
+    <ion-label>
+      <h3>{{ recipe.name }}</h3>
+      <p>{{ recipe.description }}</p>
+    </ion-label>
+  
+  </ion-item>
 
   </ion-list>
 
