@@ -1,20 +1,39 @@
+<!-- Top header of the Home page -->
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <!-- App title shown at the top -->
+    <ion-title>Recipe App</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<!-- Main scrollable content area -->
+<ion-content class="ion-padding">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- Intro text -->
+  <ion-text>
+    <h2>Welcome to recipe search</h2>
+    <p>Select a recipe from the list below</p>
+  </ion-text>
+
+  <!-- List container for recipes -->
+  <ion-list>
+
+    <!-- First recipe item -->
+    <ion-item button>
+      <ion-label>
+        <h3>Sushi</h3>
+        <p>Classic Japanese</p>
+      </ion-label>
+    </ion-item>
+
+    <!-- Second recipe item -->
+    <ion-item button>
+      <ion-label>
+        <h3>Lasagna</h3>
+        <p>Classic Italian</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+
 </ion-content>
