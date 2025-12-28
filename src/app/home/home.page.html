@@ -1,40 +1,55 @@
 <!-- Top header of the Home page -->
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <!-- App title shown at the top -->
-    <ion-title>Recipe App G00439456</ion-title>
-        <ion-buttons slot="end">
-      <ion-button routerLink="/favourites">
-        <ion-icon name="heart"></ion-icon>
-      </ion-button>
-      <ion-button routerLink="/settings">
-        <ion-icon name="settings"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-toolbar>
+<ion-title>Recipe App G00439456</ion-title>
+<ion-buttons slot="end">
+<ion-button routerLink="/favourites">
+<ion-icon name="heart"></ion-icon></ion-button>
+<ion-button routerLink="/settings">
+<ion-icon name="settings"></ion-icon>
+</ion-button>
+</ion-buttons>
+</ion-toolbar>
 </ion-header>
 
-<!-- Main scrollable content area -->
 <ion-content class="ion-padding">
 
-  <!-- Intro text -->
-  <ion-text>
-    <h2>Welcome to recipe search</h2>
-    <p>Select a recipe from the list below</p>
-  </ion-text>
+<ion-text>
+<h2>Welcome to recipe search</h2>
+<p>Enter ingredients to find related recipes</p>
+</ion-text>
 
-  <!-- List container for recipes -->
-  <ion-list>
+<!-- Initial code used for static recipe data , replaced by searrch results from Spoonacular -->
+<!--<ion-list>
+<ion-item button *ngFor="let recipe of recipes">
+<ion-label>
+<h3>{{ recipe.name }}</h3>
+<p>{{ recipe.description }}</p>
+</ion-label>
+</ion-item>
+</ion-list>-->
 
-    <!-- First recipe item -->
-   <ion-item button *ngFor="let recipe of recipes">
-    <ion-label>
-      <h3>{{ recipe.name }}</h3>
-      <p>{{ recipe.description }}</p>
-    </ion-label>
-  
-  </ion-item>
+<ion-item>
+    <ion-input
+    name = "ingredients"
+    label="Ingredients"
+    labelPlacement="stacked"
+    placeholder="e.g. Egg, Beans"
+    [(ngModel)]="ingredients">
+    </ion-input>
+</ion-item>
 
-  </ion-list>
-  
+<!--Search button-->
+<ion-button expand ="block" (click)="searchRecipes()">Search</ion-button>
+
+<!--Search list-->
+<ion-list *ngIf="recipes.length > 0">
+<ion-item button *ngFor="let recipe of recipes" (click)="openDetails(recipe.id)">
+<ion-label>
+<h3>{{ recipe.title }}</h3>
+<p *ngIf="recipe.usedIngredientCount !== undefined">Used: {{ recipe.usedIngredientCount }} | Missing: {{ recipe.missedIngredientCount }}</p>
+</ion-label>
+</ion-item>
+</ion-list>
+
 </ion-content>

@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem , IonLabel, IonButtons, IonButton, IonIcon} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem , IonLabel, IonButtons, IonButton, IonIcon, IonInput} from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import { heart, settings } from 'ionicons/icons';
-import {RouterLink} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
  
 @Component({
   selector: 'app-home',
@@ -11,20 +13,35 @@ import {RouterLink} from '@angular/router';
   styleUrls: ['home.page.scss'],
   standalone : true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem, IonLabel, CommonModule, IonButtons, IonButton, IonIcon,
-  RouterLink],
+  RouterLink, IonInput, FormsModule],
 })
+
 export class HomePage {
-recipes = [
-    {
-      name: 'Sushi',
-      description: 'Classic Japanese'
-    },
-    {
-      name: 'Lasagna',
-      description: 'Classic Italian'
-    }
-  ];
-    constructor() {
-    // Student comment: register icons used on the Home page toolbar
-    addIcons({ heart, settings });
-}}
+studentNumber: string = 'G00439456';
+ingredients: string = '';
+recipes: any[] = [];
+apikey: string = '70759a4f7911402abcc53d3c51d3b759';
+
+constructor(private http: HttpClient, private router:Router) {
+addIcons({ heart, settings });
+}
+
+searchRecipes() {
+  const q = this.ingredients.trim();
+  if (!q) return;
+
+  const url =
+    'https://api.spoonacular.com/recipes/complexSearch' +
+    '?query=' + encodeURIComponent(q) +
+    '&number=5' +
+    '&apiKey=' + this.apikey;
+
+  this.http.get<any>(url).subscribe(res => {
+    this.recipes = res?.results ?? [];
+  });
+}
+
+  openDetails(id: number) {
+    this.router.navigate(['/details', id]);
+  }
+}
