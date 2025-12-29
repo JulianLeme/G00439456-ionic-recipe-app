@@ -41,7 +41,4 @@ searchRecipes() {
   });
 }
 
-  openDetails(id: number) {
-    this.router.navigate(['/details', id]);
-  }
 }

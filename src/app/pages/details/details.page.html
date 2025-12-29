@@ -1,13 +1,39 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>details</ion-title>
+    <ion-title>Recipe Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">details</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+
+  <ng-container *ngIf="recipe; else loading">
+  
+  <h2>{{ recipe.title }}</h2>
+
+  <h3>Ingredients</h3>
+  <ion-list>
+      <ion-item *ngFor="let ing of recipe.extendedIngredients">
+      <ion-label>{{ ing.original }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ng-template #noIngredients>
+      <p>No ingredients found.</p>
+    </ng-template>
+
+  <h3>Instructions</h3>
+  <div [innerHTML]="recipe.instructions"></div>
+  
+  <ion-button expand="block" (click)="addToFavourites()">
+    Add to Favourites
+  </ion-button>
+  
+  </ng-container>
+
+  <ng-template #loading>
+    <p>Loading</p>
+  </ng-template>
+
 </ion-content>
+
+

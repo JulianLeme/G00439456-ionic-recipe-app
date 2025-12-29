@@ -44,7 +44,7 @@
 
 <!--Search list-->
 <ion-list *ngIf="recipes.length > 0">
-<ion-item button *ngFor="let recipe of recipes" (click)="openDetails(recipe.id)">
+<ion-item button *ngFor="let recipe of recipes" [routerLink]="['/details', recipe.id]">
 <ion-label>
 <h3>{{ recipe.title }}</h3>
 <p *ngIf="recipe.usedIngredientCount !== undefined">Used: {{ recipe.usedIngredientCount }} | Missing: {{ recipe.missedIngredientCount }}</p>
