@@ -4,10 +4,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">favourites</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list *ngIf="favourites.length > 0; else empty">
+    <ion-item *ngFor="let fav of favourites" button (click) = "openDetails(fav.id)">
+      
+      <ion-label>
+        {{fav.title}}
+      </ion-label>
+      
+      <ion-button
+        slot="end"
+        color="danger"
+        fill="clear"
+        (click)="remove(fav.id); $event.stopPropagation()">
+        Remove
+      </ion-button>
+    </ion-item>
+
+     </ion-list>
+      
+  <ng-template #empty>
+    <p>No favourites yet!</p>
+  </ng-template>
+     
 </ion-content>
+
