@@ -6,24 +6,19 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem , IonLabel, IonTog
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.page.html',
-  styleUrls: ['./settings.page.scss'],
   standalone: true,
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,IonItem, IonLabel, IonToggle]
 })
-export class SettingsPage implements OnInit {
-  metric: boolean = true; 
+export class SettingsPage {
+  metric = true; 
 
   constructor() {
     const saved = localStorage.getItem('unitSystem');
     this.metric = saved ? saved === 'metric' : true; 
   }
 
-  onToggleChange(event :any) {
-     this.metric = event.detail.checked;
-    localStorage.setItem('unitSystem', this.metric ? 'metric' : 'us');
+  onToggleChange(value: boolean) {
+     this.metric = value;
+    localStorage.setItem('unitSystem', value ? 'metric' : 'us');
 }
-
-  ngOnInit() {
-  }
-
 }

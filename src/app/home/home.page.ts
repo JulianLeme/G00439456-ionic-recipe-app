@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem , IonLabel, IonButtons, IonButton, IonIcon, IonInput} from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem , IonLabel, IonButtons, IonButton, IonIcon, IonInput, IonThumbnail, IonGrid, IonRow, IonCol} from '@ionic/angular/standalone';
 import {addIcons} from 'ionicons';
 import { heart, settings } from 'ionicons/icons';
 import {Router, RouterLink} from '@angular/router';
@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['home.page.scss'],
   standalone : true,
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonText, IonList, IonItem, IonLabel, CommonModule, IonButtons, IonButton, IonIcon,
-  RouterLink, IonInput, FormsModule],
+  RouterLink, IonInput, FormsModule , IonThumbnail,IonGrid, IonRow, IonCol],
 })
 
 export class HomePage {
@@ -41,4 +41,6 @@ searchRecipes() {
   });
 }
 
-}
+openDetails(id: number) {
+    this.router.navigate(['/details', id]);
+}}

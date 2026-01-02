@@ -24,11 +24,11 @@ export class FavouritesPage {
   }
   
   openDetails(id:number){
-    this.router.navigate(['/details'])
+    this.router.navigate(['/details',id])
   }
 
  remove(id:number){
-    this.favourites = this.favourites.filter(f => f.id !== id);
+    this.favourites = this.favourites.filter((f: any)=> f.id !== id);
     localStorage.setItem('favourites', JSON.stringify(this.favourites));
   }
 }
