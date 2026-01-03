@@ -25,4 +25,7 @@ npm install
 3. Run the application:
 ionic serve
 4. Open in browser:
+
 http://localhost:8100
+
+https://github.com/JulianLeme/G00439456-ionic-recipe-app
