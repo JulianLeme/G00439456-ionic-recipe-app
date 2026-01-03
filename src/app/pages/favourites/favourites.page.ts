@@ -12,23 +12,23 @@ import { Router } from '@angular/router';
 
 export class FavouritesPage {
 
-  favourites :any[]=[] ;
+  favourites :any[]=[] ; //Stores the list of favourite recipes
 
   constructor(private router: Router) { }
   ionViewWillEnter() {
     this.loadFavourites();
-  }
+  } //Reload favourites
 
   loadFavourites() {
     this.favourites = JSON.parse(localStorage.getItem('favourites') ?? '[]');
-  }
+  } //Loads favorites from browser
   
   openDetails(id:number){
     this.router.navigate(['/details',id])
-  }
+  } // open recipe details
 
  remove(id:number){
     this.favourites = this.favourites.filter((f: any)=> f.id !== id);
     localStorage.setItem('favourites', JSON.stringify(this.favourites));
-  }
+  } // remove recipe from favourites
 }

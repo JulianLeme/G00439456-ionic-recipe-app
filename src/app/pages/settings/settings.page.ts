@@ -10,14 +10,14 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem , IonLabel, IonTog
   imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule,IonItem, IonLabel, IonToggle]
 })
 export class SettingsPage {
-  metric = true; 
+  metric = true; //Boolean used to control units
 
-  constructor() {
-    const saved = localStorage.getItem('unitSystem');
+  constructor() {//Load saved unit prefernce  from localStorage
+    const saved = localStorage.getItem('unitSystem'); 
     this.metric = saved ? saved === 'metric' : true; 
   }
 
-  onToggleChange(value: boolean) {
+  onToggleChange(value: boolean) { //Updates the unit system
      this.metric = value;
     localStorage.setItem('unitSystem', value ? 'metric' : 'us');
 }

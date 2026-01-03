@@ -18,17 +18,17 @@ import { FormsModule } from '@angular/forms';
 
 export class HomePage {
 studentNumber: string = 'G00439456';
-ingredients: string = '';
-recipes: any[] = [];
+ingredients: string = ''; //Stores the ingredients typed by the user
+recipes: any[] = []; //Stores list of recipes returned  by API 
 apikey: string = '70759a4f7911402abcc53d3c51d3b759';
 
 constructor(private http: HttpClient, private router:Router) {
 addIcons({ heart, settings });
 }
 
-searchRecipes() {
+searchRecipes() { //Search recipes using the Spoonacular API
   const q = this.ingredients.trim();
-  if (!q) return;
+  if (!q) return; //Do not search if input is empty
 
   const url =
     'https://api.spoonacular.com/recipes/complexSearch' +
@@ -38,9 +38,9 @@ searchRecipes() {
 
   this.http.get<any>(url).subscribe(res => {
     this.recipes = res?.results ?? [];
-  });
+  }); //GET recipes from the API
 }
 
 openDetails(id: number) {
     this.router.navigate(['/details', id]);
-}}
+}} //Navigates to the Details page of recipe
